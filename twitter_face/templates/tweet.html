@@ -1,0 +1,21 @@
+{% extends "base2.html" %}
+{% load url from future %}
+
+{% block head_js %} 
+    <script src="{{ STATIC_URL }}js/validate.js"></script>
+{% endblock %}
+
+{% block content %}
+	Type your tweet here,
+	<form id="tweet_form" action="{% url 'save_tweet' %}" method="post">
+		{% csrf_token %}
+		<span id ="char_left">
+	      Characters Left: <label id="counter">110</label>
+	    </span>
+	    {% if error %}
+	       {{error}} <br>
+	    {% endif %}
+		{{tweet_form.content}}
+		<input class="btn btn-primary" type="submit" value="Submit Tweet">
+	</form>
+{% endblock %}

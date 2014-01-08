@@ -1,0 +1,13 @@
+"""
+This file holds the app specific settings.
+"""
+
+####### Django Allauth settings #######
+SOCIALACCOUNT_AVATAR_SUPPORT = "avatar"
+
+####### Python-twitter Settings #######
+ACCESS_TOKEN = "2219972965-cdcKKtUz2J1obAaCzOGAk458kRqtoorSVavrzeD"
+ACCESS_SECRET = "1w4EMzATbnw6KXzo5Wh2uvOItLj0yojZtGQMk5DvJNFg8"
+
+####### Twitter Face app settings #######
+TAXONAMY_FILE_NAME = "PythonCodeTestSampleTaxonomy.csv"

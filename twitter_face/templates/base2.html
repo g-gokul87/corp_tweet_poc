@@ -1,0 +1,46 @@
+{% load url from future %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js">
+    </script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% block head_css %} 
+        <!-- Use this block to add additional css files in the sub templates -->
+    {% endblock head_css %}
+    {% block head_js %} 
+        <!-- Use this block to add additional js files in the sub templates -->
+    {% endblock head_js %}
+    <title>{% block title %}Tweet App{% endblock %}
+  </title>
+</head>
+<body>
+    <div class="container">
+	  <div class="row">
+	    <div class="span9 centred">
+	      {% if user.is_authenticated %}
+              {% load avatar_tags %}
+              {% avatar user 32 %}
+              Welcome, {{ user.first_name }}
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{redirect_field_name}}" value="{{redirect_field_value}}"/>
+                {% endif %}
+                <button type="submit">{% trans 'Sign Out' %}</button>
+              </form>
+          {% endif %} 
+	      <div class="content">
+               {% block content %}
+               {% endblock  %}
+          </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
